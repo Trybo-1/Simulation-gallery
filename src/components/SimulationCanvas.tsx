@@ -1,8 +1,8 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import {drawParticle} from "@/simulations/boids/renderer";
-import { particles, updateParticles } from "@/simulations/boids/engine";
+import {drawBoid} from "@/simulations/boids/renderer";
+import { boids, updateBoids } from "@/simulations/boids/engine";
 
 export default function SimulationCanvas() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
@@ -17,12 +17,12 @@ export default function SimulationCanvas() {
     if (!ctx) return;
 
     const animate = () => {
-        updateParticles();
+        updateBoids();
 
         ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-        for (const particle of particles) {
-          drawParticle(ctx, particle);
+        for (const boid of boids) {
+          drawBoid(ctx, boid);
         }
 
         requestAnimationFrame(animate);

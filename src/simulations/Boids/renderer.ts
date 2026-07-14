@@ -1,12 +1,12 @@
-import { Particle } from "./types";
+import { Boid } from "./types";
 
-export function drawParticle(ctx: CanvasRenderingContext2D, particle: Particle) {
+export function drawBoid(ctx: CanvasRenderingContext2D, boid: Boid) {
   ctx.beginPath();
 
   ctx.arc(
-    particle.Position.x,
-    particle.Position.y,
-    particle.radius,
+    boid.Position.x,
+    boid.Position.y,
+    boid.radius,
     0,
     Math.PI * 2
   );
