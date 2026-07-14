@@ -1,9 +1,7 @@
+import { Vector2 } from "@/lib/Vector";
+
 export interface Particle {
-  x: number;
-  y: number;
-
-  vx: number;
-  vy: number;
-
+  Position: Vector2;
+  Velocity: Vector2;
   radius: number;
 }
