@@ -11,6 +11,11 @@ export class Vector2 {
         this.x += v.x;
         this.y += v.y;
     }
+    
+    subtract(other: Vector2) {
+        this.x -= other.x;
+        this.y -= other.y;
+    }
 
     multiply(value: number) {
         this.x *= value;

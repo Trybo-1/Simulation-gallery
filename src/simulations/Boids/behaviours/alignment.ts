@@ -1,6 +1,7 @@
 import { Vector2 } from "@/lib/Vector";
 import { Boid } from "../types";
 import { getNeighbors } from "../neighbors";
+import { settings } from "../settings";
 
 export function align(boid: Boid) {
     const neighbors = getNeighbors(boid);
@@ -15,7 +16,7 @@ export function align(boid: Boid) {
 
     average.divide(neighbors.length);
     average.normalize();
-    average.multiply(3);
+    average.multiply(settings.MAX_SPEED);
 
     boid.Velocity.x += (average.x - boid.Velocity.x) * 0.05;
     boid.Velocity.y += (average.y - boid.Velocity.y) * 0.05;

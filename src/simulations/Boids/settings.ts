@@ -1,0 +1,18 @@
+export const settings = {
+    WIDTH: 1000,
+    HEIGHT: 700,
+
+    BOID_COUNT: 100,
+
+    BOID_RADIUS: 5,
+
+    MAX_SPEED: 3,
+
+    VISION_RADIUS: 80,
+
+    SEPARATION_DISTANCE: 15,
+
+    ALIGNMENT_WEIGHT: 0.05,
+    COHESION_WEIGHT: 0.03,
+    SEPARATION_WEIGHT: 0.1,
+};

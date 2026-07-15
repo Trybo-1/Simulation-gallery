@@ -1,15 +1,19 @@
 import { Vector2 } from "@/lib/Vector";
 import {Boid} from "./types";
 import { align } from "./behaviours/alignment";
+import { settings } from "./settings";
+import { cohesion } from "./behaviours/cohesion";
+import { separation } from "./behaviours/seperation";
+
 
 export const boids: Boid[] = [];
 
-for (let i = 0; i < 100; i++) {
+for (let i = 0; i < settings.BOID_COUNT; i++) {
   boids.push({
-    Position: new Vector2(Math.random() * 1000, Math.random() * 700),
-    Velocity: new Vector2((Math.random() - 0.5) * 6, (Math.random() - 0.5) * 6),
-    radius: 5,
-    visionRadius: 80,
+    Position: new Vector2(Math.random() * settings.WIDTH, Math.random() * settings.HEIGHT),
+    Velocity: new Vector2((Math.random() - 0.5) * settings.MAX_SPEED, (Math.random() - 0.5) * settings.MAX_SPEED),
+    radius: settings.BOID_RADIUS,
+    visionRadius: settings.VISION_RADIUS,
   });
 }
 
@@ -31,22 +35,8 @@ export function updateBoids() {
     }
 
     align(boid);
+    cohesion(boid);
+    separation(boid);
     boid.Position.add(boid.Velocity);
   }
-}
-
-export function getNeighbors(current: Boid): Boid[] {
-  const neighbors: Boid[] = [];
-
-  for (const other of boids) {
-    if (other === current) continue;
-
-    const distance = current.Position.distance(other.Position);
-
-    if (distance <= current.visionRadius) {
-      neighbors.push(other);
-    }
-  }
-
-  return neighbors;
 }
