@@ -4,6 +4,7 @@ import { align } from "./behaviours/alignment";
 import { settings } from "./settings";
 import { cohesion } from "./behaviours/cohesion";
 import { separation } from "./behaviours/seperation";
+import { wallAvoidance } from "./behaviours/wallAvoidance";
 
 
 export const boids: Boid[] = [];
@@ -19,24 +20,10 @@ for (let i = 0; i < settings.BOID_COUNT; i++) {
 
 export function updateBoids() {
   for (const boid of boids) {
-
-    if (
-      boid.Position.x <= boid.radius ||
-      boid.Position.x >= 1000 - boid.radius
-    ) {
-      boid.Velocity.x *= -1;
-    }
-
-    if (
-      boid.Position.y <= boid.radius ||
-      boid.Position.y >= 700 - boid.radius
-    ) {
-      boid.Velocity.y *= -1;
-    }
-
     align(boid);
     cohesion(boid);
     separation(boid);
+    wallAvoidance(boid);
     boid.Position.add(boid.Velocity);
   }
 }

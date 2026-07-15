@@ -61,4 +61,15 @@ export class Vector2 {
 
         return Math.sqrt(dx * dx + dy * dy);
     }
+
+    rotate(angle: number) {
+        const cos = Math.cos(angle);
+        const sin = Math.sin(angle);
+
+        const x = this.x * cos - this.y * sin;
+        const y = this.x * sin + this.y * cos;
+
+        this.x = x;
+        this.y = y;
+    }
 }
