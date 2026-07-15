@@ -1,5 +1,6 @@
 import { Vector2 } from "@/lib/Vector";
 import {Boid} from "./types";
+import { align } from "./behaviours/alignment";
 
 export const boids: Boid[] = [];
 
@@ -14,7 +15,6 @@ for (let i = 0; i < 100; i++) {
 
 export function updateBoids() {
   for (const boid of boids) {
-    boid.Position.add(boid.Velocity);
 
     if (
       boid.Position.x <= boid.radius ||
@@ -29,6 +29,9 @@ export function updateBoids() {
     ) {
       boid.Velocity.y *= -1;
     }
+
+    align(boid);
+    boid.Position.add(boid.Velocity);
   }
 }
 
