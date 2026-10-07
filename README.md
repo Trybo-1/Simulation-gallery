@@ -1,36 +1,118 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Boids Simulation
 
-## Getting Started
+A real-time **Boids flocking simulation** built with TypeScript and rendered in the browser.
 
-First, run the development server:
+The simulation models emergent flocking behaviour by giving each boid a small set of simple rules. When these rules interact, coordinated group behaviour naturally emerges without explicitly controlling the flock as a whole.
+
+## Application
+
+When the application is launched, the user is first presented with the **Simulation Gallery** landing page.
+
+![Simulation Gallery](images/firstScreen.png)
+
+The landing page provides a **Boids** button which redirects the user to the interactive Boids simulation.
+
+```text
+Simulation Gallery
+        │
+        ▼
+   [ Boids ]
+        │
+        ▼
+  Boids Simulation
+```
+
+This provides a simple gallery structure that can be expanded with additional simulations in the future.
+
+## Demo
+
+![Boids Simulation](images/boids.gif)
+
+## Features
+
+* **Simulation Gallery** — landing page for accessing available simulations.
+* **Boids Navigation** — button that redirects the user to the Boids simulation.
+* **Separation** — prevents boids from getting too close to one another.
+* **Alignment** — encourages boids to match the direction and velocity of nearby boids.
+* **Cohesion** — encourages boids to move towards the centre of their local group.
+* **Wall Avoidance** — prevents boids from leaving the simulation area.
+* **Neighbour Detection** — identifies nearby boids used for calculating flocking behaviour.
+* **Real-Time Simulation** — all behaviours are calculated continuously as the simulation runs.
+
+## How It Works
+
+Each boid calculates its movement based on the nearby boids within its perception range.
+
+The resulting steering behaviour is a combination of:
+
+```text
+Separation
+     +
+Alignment
+     +
+Cohesion
+     +
+Wall Avoidance
+     ↓
+Combined Steering Force
+     ↓
+Updated Velocity
+     ↓
+Updated Position
+```
+
+No individual boid is given instructions about where the flock should move. Instead, complex flocking behaviour emerges from the interaction between simple local rules.
+
+## Project Structure
+
+```text
+src/
+└── simulations/
+    └── Boids/
+        ├── behaviours/
+        │   ├── alignment.ts
+        │   ├── cohesion.ts
+        │   ├── seperation.ts
+        │   └── wallAvoidance.ts
+        ├── engine.ts
+        ├── neighbors.ts
+        ├── renderer.ts
+        ├── settings.ts
+        └── types.ts
+```
+
+## Technologies
+
+* TypeScript
+* React
+* Next.js
+* HTML Canvas
+* Vector-based movement and steering behaviours
+
+## Running Locally
+
+Clone the repository and install the dependencies:
+
+```bash
+git clone https://github.com/Trybo-1/Simulation-gallery.git
+cd Simulation-gallery
+npm install
+```
+
+Start the development server:
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Then open:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+```text
+http://localhost:3000
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Purpose
 
-## Learn More
+This project is part of a collection of simulations exploring **computer science concepts, algorithms, and emergent behaviour** through interactive visualisations.
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+The goal is to implement the underlying logic from scratch and make the behaviour observable rather than treating the simulation as a black box.
