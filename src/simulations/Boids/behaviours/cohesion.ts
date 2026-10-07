@@ -19,6 +19,6 @@ export function cohesion(boid: Boid) {
     center.normalize();
     center.multiply(settings.MAX_SPEED);
 
-    boid.Velocity.x += (center.x - boid.Velocity.x) * 0.05;
-    boid.Velocity.y += (center.y - boid.Velocity.y) * 0.05;
+    boid.Velocity.x += (center.x - boid.Velocity.x) * settings.COHESION_WEIGHT;
+    boid.Velocity.y += (center.y - boid.Velocity.y) * settings.COHESION_WEIGHT;
 }

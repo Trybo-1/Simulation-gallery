@@ -21,11 +21,10 @@ export function wallAvoidance(boid: Boid) {
 
     //Right
     if (
-        boid.Position.x > settings.WIDTH - margin &&
-        boid.Velocity.x > 0
+        boid.Position.x > settings.WIDTH - margin && boid.Velocity.x > 0
     ) {
 
-         const strength = Math.pow((margin - boid.Position.x) / margin, 2 );
+        const strength = Math.pow((margin - boid.Position.x) / margin, 2 );
 
         const turn = maxTurn * strength;
 
@@ -38,8 +37,7 @@ export function wallAvoidance(boid: Boid) {
     //Top
     if (boid.Position.y < margin && boid.Velocity.y < 0) {
 
-        const strength =
-            Math.pow((margin - boid.Position.y) / margin, 2);
+        const strength = Math.pow((margin - boid.Position.y) / margin, 2);
 
         const turn = maxTurn * strength;
 

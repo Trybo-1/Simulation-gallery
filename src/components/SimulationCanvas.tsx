@@ -34,8 +34,8 @@ export default function SimulationCanvas() {
   return (
     <canvas
       ref={canvasRef}
-      width={1800}
-      height={950}
+      width={1000}
+      height={800}
       className="bg-black rounded-xl border border-neutral-700"
     />
   );

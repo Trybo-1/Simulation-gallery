@@ -18,6 +18,6 @@ export function align(boid: Boid) {
     average.normalize();
     average.multiply(settings.MAX_SPEED);
 
-    boid.Velocity.x += (average.x - boid.Velocity.x) * 0.05;
-    boid.Velocity.y += (average.y - boid.Velocity.y) * 0.05;
+    boid.Velocity.x += (average.x - boid.Velocity.x) * settings.ALIGNMENT_WEIGHT;
+    boid.Velocity.y += (average.y - boid.Velocity.y) * settings.ALIGNMENT_WEIGHT;
 }

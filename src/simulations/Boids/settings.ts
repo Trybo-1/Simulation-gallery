@@ -1,11 +1,11 @@
 export const settings = {
-    WIDTH: 1800,
-    HEIGHT: 950,
+    WIDTH: 1050,
+    HEIGHT: 800,
 
-    WALL_MARGIN: 80,
-    WALL_TURN_FORCE: 0.08,
+    WALL_MARGIN: 50,
+    WALL_TURN_FORCE: 0.1,
 
-    BOID_COUNT: 500,
+    BOID_COUNT: 1000,
 
     BOID_RADIUS: 5,
 
